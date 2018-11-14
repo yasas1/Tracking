@@ -10,6 +10,7 @@ import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -46,6 +47,7 @@ public class MapTestActivity extends FragmentActivity implements OnMapReadyCallb
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+
             return;
         }
             // check the network provider is enabled
@@ -54,6 +56,7 @@ public class MapTestActivity extends FragmentActivity implements OnMapReadyCallb
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
+
                     //get the latitude
                     double latitude = location.getLatitude();
                     //get the longitude
@@ -69,8 +72,10 @@ public class MapTestActivity extends FragmentActivity implements OnMapReadyCallb
                         str += addressList.get(0).getCountryName();
 
                         mMap.addMarker(new MarkerOptions().position(latLng).title(str));
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10.2f));
-                        
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10.8f));
+
+                        Toast.makeText(MapTestActivity.this, str, Toast.LENGTH_LONG).show();
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
