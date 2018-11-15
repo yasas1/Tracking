@@ -80,6 +80,12 @@ public class MapTestActivity extends FragmentActivity implements OnMapReadyCallb
                         e.printStackTrace();
                     }
 
+                    String type = "locations";
+
+                    BackgroundLocation backgroundLocation = new BackgroundLocation(this);
+
+                    backgroundLocation.execute(type,Double.toString(latitude),Double.toString(longitude));
+
                 }
 
                 @Override
